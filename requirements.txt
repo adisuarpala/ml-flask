@@ -22,7 +22,7 @@ matplotlib==3.1.0
 mccabe==0.6.1
 networkx==2.3
 numpy==1.16.4
-opencv-python==4.1.0.25
+opencv-python-headless==4.2.0.32
 pickle-mixin==1.0.2
 Pillow==6.0.0
 pylint==2.3.1
