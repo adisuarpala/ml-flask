@@ -3,17 +3,13 @@
 
 # import the necessary packages
 from py_lbp.localbinarypatterns import LocalBinaryPatterns
-from imutils import paths
-import argparse
 from cv2 import cv2
-import os
 import pickle
 import json
 from flask import Flask, request, Response
 import uuid
 import numpy as np
 from matplotlib import pyplot as plt
-import datetime
 
 
 def classify (image):
