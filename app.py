@@ -30,8 +30,8 @@ def classify (image):
 	image = cv2.putText(image, prediction[0], (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2.0, (0, 0, 255), 5)
 
 	#save file
-	path_file = ('static/%s.jpg'  %uuid.uuid4().hex)
-	cv2.imwrite(path_file, image)
+	#path_file = ('static/%s.jpg'  %uuid.uuid4().hex)
+	cv2.imwrite(image)
 
 	return json.dumps(path_file) #return image file name
 
