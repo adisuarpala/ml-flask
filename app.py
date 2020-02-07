@@ -40,7 +40,7 @@ def classify(image):
 app = Flask(__name__)
 
 # route http post to this method
-@app.route('/api/upload', methods=['POST'])
+@app.route('/')
 def upload():
     # retrieve image from client
     img = cv2.imdecode(np.fromstring(request.files['image'].read(),np.uint8),cv2.IMREAD_COLOR)
