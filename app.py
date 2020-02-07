@@ -16,8 +16,8 @@ def classify(image):
 	desc = LocalBinaryPatterns(8,1)
 	
 	gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-	gausian_blur = cv2.GaussianBlur(gray,(5,5),0)
-	hist = desc.describe(gausian_blur)
+	#gausian_blur = cv2.GaussianBlur(gray,(5,5),0)
+	hist = desc.describe(gray)
 
 	# model = joblib.load("model.pkl")
 	model = pickle.loads(open("model", "rb").read())
@@ -40,7 +40,7 @@ def classify(image):
 app = Flask(__name__)
 
 # route http post to this method
-@app.route('/')
+@app.route('/api/upload', methods=['POST'])
 def upload():
     # retrieve image from client
     img = cv2.imdecode(np.fromstring(request.files['image'].read(),np.uint8),cv2.IMREAD_COLOR)
