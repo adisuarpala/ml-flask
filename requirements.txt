@@ -8,5 +8,7 @@ numpy==1.18.1
 opencv-python-headless==4.2.0.32
 pickle-mixin==1.0.2
 scikit-image==0.15.0
+scikit-learn==0.22.1
+sklearn==0.0
 uuid==1.30
 Werkzeug==1.0.0
