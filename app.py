@@ -9,10 +9,9 @@ import json
 from flask import Flask, request, Response
 import uuid
 import numpy as np
-from matplotlib import pyplot as plt
 
 
-def classify (image):
+def classify(image):
 
 	desc = LocalBinaryPatterns(8,1)
 	
@@ -20,7 +19,7 @@ def classify (image):
 	gausian_blur = cv2.GaussianBlur(gray,(5,5),0)
 	hist = desc.describe(gausian_blur)
 
-	#model = joblib.load("model.pkl")
+	# model = joblib.load("model.pkl")
 	model = pickle.loads(open("model", "rb").read())
 
 
@@ -29,27 +28,28 @@ def classify (image):
 	# display the image and the prediction
 	image = cv2.putText(image, prediction[0], (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2.0, (0, 0, 255), 5)
 
-	#save file
-	#path_file = ('static/%s.jpg'  %uuid.uuid4().hex)
-	cv2.imwrite(image)
-
-	return json.dumps(path_file) #return image file name
+	# save file
+	newfile = ('static/%s.jpg' % uuid.uuid4().hex)
+	cv2.imwrite(newfile, image)
 
 
+	return json.dumps(newfile) # return image file name
 
-#API
+
+# API
 app = Flask(__name__)
 
-#route http post to this method
-@app.route('/', methods=['PATCH'])
-def index():
-    #retrieve image from client
+# route http post to this method
+@app.route('/api/upload', methods=['POST'])
+def upload():
+    # retrieve image from client
     img = cv2.imdecode(np.fromstring(request.files['image'].read(),np.uint8),cv2.IMREAD_COLOR)
-    #process image
+    # process image
     img_processed = classify(img)
-    #response
-    return Response (response=img_processed, status=200, mimetype="application/json") #return json string
+    # response
+    return Response (response=img_processed, status=200, mimetype="application/json") # return json string
 
-#start server
+
+# start server
 if __name__ == "__main__":
     app.run()
