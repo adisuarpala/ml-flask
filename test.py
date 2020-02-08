@@ -19,9 +19,7 @@ def classify(image):
 	#gausian_blur = cv2.GaussianBlur(gray,(5,5),0)
 	hist = desc.describe(gray)
 
-	# model = joblib.load("model.pkl")
 	model = pickle.loads(open("model", "rb").read())
-
 
 	prediction = model.predict(hist.reshape(1, -1))
 
