@@ -4,7 +4,7 @@ gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
-numpy==1.18.1
+numpy==1.22.0
 opencv-python-headless==4.2.0.32
 pickle-mixin==1.0.2
 scikit-image==0.15.0
